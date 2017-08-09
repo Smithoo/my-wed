@@ -3,6 +3,7 @@
     <hello></hello>
     <info></info>
     <card></card>
+	<kakao-link></kakao-link>
     <photos></photos>
     <photo360></photo360>
     <naver-map></naver-map>
@@ -11,27 +12,22 @@
 </template>
 
 <script>
-import firebase from "firebase";
+import config from "./assets/config";
+import firebase from "firebase/app";
+import "firebase/database";
+import "firebase/storage";
 import Hello from "./components/Hello";
 import Info from "./components/Info";
+import KakaoLink from "./components/KakaoLink";
 import Card from "./components/Card";
 import Photos from "./components/Photos";
 import Photo360 from "./components/Photo360";
 import NaverMap from "./components/NaverMap";
 import Comments from "./components/Comments";
 
-const config = {
-    apiKey: "AIzaSyC_j14hQSTTSK34HJ7IgCGFAk46LThlnPo",
-    authDomain: "smithoo-cb60c.firebaseapp.com",
-    databaseURL: "https://smithoo-cb60c.firebaseio.com",
-    projectId: "smithoo-cb60c",
-    storageBucket: "smithoo-cb60c.appspot.com",
-    messagingSenderId: "297752471122"
-};
-
 let firebaseApp = null;
 if (!firebase.apps.length) {
-    firebaseApp = firebase.initializeApp(config);
+    firebaseApp = firebase.initializeApp(config.firebaseConfig);
 }
 const db = firebaseApp.database();
 const storage = firebaseApp.storage();
@@ -40,9 +36,9 @@ const commentsRef = db.ref("comments");
 export default {
 	name: "app",
 	components: {
-		Hello, Info, Card, Photos, Photo360, NaverMap, Comments
+		Hello, Info, KakaoLink, Card, Photos, Photo360, NaverMap, Comments
 	},
-	data: function() {
+	data() {
 		return {
 			commentsRef: commentsRef
 		};
@@ -51,7 +47,7 @@ export default {
 </script>
 
 <style>
-@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 body {
     margin: 0;
 	border: 0;

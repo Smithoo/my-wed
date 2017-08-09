@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 .git/
 .editorconfig
+src/assets/config.js
 
 # Editor directories and files
 .idea
