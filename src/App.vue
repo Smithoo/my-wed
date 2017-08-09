@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <hello></hello>
-	<info></info>
-	<card></card>
+    <info></info>
+    <card></card>
     <photos></photos>
-	<photo360></photo360>
-	<comments :commentsRef="commentsRef"></comments>
+    <photo360></photo360>
+    <naver-map></naver-map>
+    <comments :commentsRef="commentsRef"></comments>
   </div>
 </template>
 
@@ -16,14 +17,21 @@ import Info from "./components/Info";
 import Card from "./components/Card";
 import Photos from "./components/Photos";
 import Photo360 from "./components/Photo360";
+import NaverMap from "./components/NaverMap";
 import Comments from "./components/Comments";
 
 const config = {
+    apiKey: "AIzaSyC_j14hQSTTSK34HJ7IgCGFAk46LThlnPo",
+    authDomain: "smithoo-cb60c.firebaseapp.com",
+    databaseURL: "https://smithoo-cb60c.firebaseio.com",
+    projectId: "smithoo-cb60c",
+    storageBucket: "smithoo-cb60c.appspot.com",
+    messagingSenderId: "297752471122"
 };
 
 let firebaseApp = null;
 if (!firebase.apps.length) {
-	firebaseApp = firebase.initializeApp(config);
+    firebaseApp = firebase.initializeApp(config);
 }
 const db = firebaseApp.database();
 const storage = firebaseApp.storage();
@@ -32,7 +40,7 @@ const commentsRef = db.ref("comments");
 export default {
 	name: "app",
 	components: {
-		Hello, Info, Card, Photos, Photo360, Comments
+		Hello, Info, Card, Photos, Photo360, NaverMap, Comments
 	},
 	data: function() {
 		return {

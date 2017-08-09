@@ -1,16 +1,21 @@
 <template>
 	<div class="photo360">
 		<div class="photo360wrapper">
-			<div class="photo360viewer"></div>
+			<div v-if="isAvailable" class="photo360viewer"></div>
 		</div>
 	</div>
 </template>
 <script>
 export default {
 	name: "photo360",
+	data() {
+		return {
+			isAvailable: Photo360Viewer && Photo360Viewer.isWebGLAvailable()
+		}
+	},
 	mounted() {
 		const el = this.$el.querySelector(".photo360viewer");
-		if (Photo360Viewer) {
+		if (this.isAvailable) {
 			const photo360Viewer = new Photo360Viewer(
 				el,
 				{
