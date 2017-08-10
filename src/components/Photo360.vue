@@ -1,7 +1,9 @@
 <template>
 	<div class="photo360">
-		<div class="photo360wrapper">
-			<div v-if="isAvailable" class="photo360viewer"></div>
+		<div class="contents-wrap">
+			<div class="photo360wrapper">
+				<div v-if="isAvailable" class="photo360viewer"></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -14,22 +16,24 @@ export default {
 		}
 	},
 	mounted() {
-		const el = this.$el.querySelector(".photo360viewer");
-		if (this.isAvailable) {
-			const photo360Viewer = new Photo360Viewer(
-				el,
-				{
-					image: "/static/img/photo360_cube.jpg",
-					controlMode: "gallery_yaw",
-					allowPinchZoom: false,
-					fieldOfView: 95,
-					error: function() {
-						throw new Error("360 viewer is not created");
+		this.$nextTick(() => {
+			const el = this.$el.querySelector(".photo360viewer");
+			if (this.isAvailable) {
+				const photo360Viewer = new Photo360Viewer(
+					el,
+					{
+						image: "/static/img/photo360_cube.jpg",
+						controlMode: "gallery_yaw",
+						allowPinchZoom: false,
+						fieldOfView: 95,
+						error: function() {
+							throw new Error("360 viewer is not created");
+						}
 					}
-				}
-			);
-			photo360Viewer.resume();
-		}
+				);
+				photo360Viewer.resume();
+			}
+		});
 	}
 };
 </script>
@@ -37,7 +41,6 @@ export default {
 .photo360 {
 	position: relative;
 	width: 100%;
-	margin-top: 50px;
 	max-height: 500px;
 }
 .photo360wrapper {

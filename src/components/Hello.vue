@@ -1,5 +1,9 @@
 <template>
-	<h1>Wedding Invitation</h1>
+	<div id="hello">
+		<div class="contents-wrap">
+			<h1>Wedding Invitation</h1>
+		</div>
+	</div>
 </template>
 
 <script>

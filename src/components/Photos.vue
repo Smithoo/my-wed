@@ -1,33 +1,46 @@
 <template>
-    <flickity ref="flickity" :options="flickityOptions">
-        <div class="carousel-cell">
-            <img src="./../assets/1.jpg" alt="">
+    <div id="photos">
+        <div class="contents-wrap">
+            
         </div>
-        <div class="carousel-cell">
-            <img src="./../assets/2.jpg" alt="">
-        </div>
-        <div class="carousel-cell">
-            <img src="./../assets/3.jpg" alt="">
-        </div>
-    </flickity>
+    </div>
 </template>
 <script>
-import Flickity from 'vue-flickity';
-
 export default {
     name: "photos",
     components: {
-        Flickity
     },
+    props: ["photoRef"],
     data() {
         return {
-            flickityOptions: {
+            flickityOption: {
                 autoPlay: 5000,
                 prevNextButtons: false,
                 pageDots: true,
                 wrapAround: true
             }
         }
+    },
+    mounted() {
+      setTimeout(() => {
+          const photos = this.photoRef.child("photos");
+          console.log(photos);
+          /*
+            // Points to 'images/space.jpg'
+            // Note that you can use variables to create child values
+            var fileName = 'space.jpg';
+            var spaceRef = imagesRef.child(fileName);
+
+            // File path is 'images/space.jpg'
+            var path = spaceRef.fullPath
+
+            // File name is 'space.jpg'
+            var name = spaceRef.name
+
+            // Points to 'images'
+            var imagesRef = spaceRef.parent;
+            */
+      }, 3000)
     },
     methods: {
         next() {
@@ -39,7 +52,24 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
+#photos {
+    position: relative;
+}
+#photos ul {
+    position: relative;
+    padding: 0 20px;
+}
+#photos li {
+    position: relative;
+    width: 33.33%;
+    padding-top: 100%;
+}
+#photos .photo {
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
+}
 .carousel-cell {
     position: relative;
     overflow: hidden;

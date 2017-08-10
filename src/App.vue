@@ -71,4 +71,10 @@ iframe{vertical-align:top}
 #app {
   text-align: center;
 }
+.contents-wrap {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 20px;
+}
 </style>

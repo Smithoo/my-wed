@@ -1,23 +1,21 @@
 <template>
-	<section id="comments">
-		<form v-on:submit.prevent="pushComment">
-		  <h2>방명록</h2>
-		  <p>
-			  <input type="text" v-model="newComment.name" placeholder="이름을 입력하세요" />
-		  </p>
-		  <p>
-			  <textarea type="text" v-model="newComment.message" placeholder="메시지를 입력하세요" />
-		  </p>
-		  <input type="submit" value="추가" />
-		</form>
-		<ul class="commentList">
-			<li v-for="comment in comments">
-				이름: {{comment.name}}
-				<br>
-				메시지: {{comment.message}}
-			</li>
-		</ul>
-	</section>
+	<div id="comments">
+		<div class="contents-wrap">
+			<form v-on:submit.prevent="pushComment">
+			  <h2>방명록</h2>
+			  <p><input type="text" v-model="newComment.name" placeholder="이름을 입력하세요" /></p>
+			  <p><textarea type="text" v-model="newComment.message" placeholder="메시지를 입력하세요" /></p>
+			  <input type="submit" value="추가" />
+			</form>
+			<ul class="commentList">
+				<li v-for="comment in comments">
+					이름: {{comment.name}}
+					<br>
+					메시지: {{comment.message}}
+				</li>
+			</ul>
+		</div>
+	</div>
 </template>
 <script>
 export default {

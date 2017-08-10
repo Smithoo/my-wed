@@ -1,11 +1,13 @@
 <template>
 	<div id="naver-map">
-		<h2>오시는 길</h2>
-        <div id="naver-map-wrapper">
-            <div id="naver-map-content">
-                <div id="map"></div>
-            </div>
-        </div>
+		<div class="contents-wrap">
+			<h2>오시는 길</h2>
+	        <div id="naver-map-wrapper">
+	            <div id="naver-map-content">
+	                <div id="map"></div>
+	            </div>
+	        </div>
+		</div>
 	</div>
 </template>
 <script>
