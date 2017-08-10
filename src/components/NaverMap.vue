@@ -1,6 +1,6 @@
 <template>
 	<div id="naver-map">
-		오시는 길
+		<h2>오시는 길</h2>
         <div id="naver-map-wrapper">
             <div id="naver-map-content">
                 <div id="map"></div>
