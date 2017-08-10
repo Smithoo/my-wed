@@ -4,7 +4,7 @@
     <info></info>
     <card></card>
 	<kakao-link></kakao-link>
-    <photos></photos>
+    <photos :photoRef="photoRef"></photos>
     <photo360></photo360>
     <naver-map></naver-map>
     <comments :commentsRef="commentsRef"></comments>
@@ -31,7 +31,6 @@ if (!firebase.apps.length) {
 }
 const db = firebaseApp.database();
 const storage = firebaseApp.storage();
-const commentsRef = db.ref("comments");
 
 export default {
 	name: "app",
@@ -40,7 +39,8 @@ export default {
 	},
 	data() {
 		return {
-			commentsRef: commentsRef
+            photoRef: storage.ref(),
+			commentsRef: db.ref("comments")
 		};
 	}
 }
@@ -48,15 +48,27 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
-body {
-    margin: 0;
-	border: 0;
-	padding: 0;
-}
+html,body{width:100%;height:100%}
+html{overflow-y:scroll; font-size:10px; font:inherit;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0;border:0;}
+body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all;line-height:1}
+header,aside,article,nav,main,section,details,figcaption,figure,footer,hgroup,menu{display:block;}
+img,fieldset,iframe{border:0 none}
+input,select,button{vertical-align:middle;outline:none}
+input:focus,select:focus,textarea:focus,button:focus{outline:none}
+img{vertical-align:top}
+label,button{cursor:pointer; font-family: inherit;}
+button{margin:0;padding:0;background-color: transparent;}
+a{text-decoration:none;color:#000}
+button *{position:relative}
+option{padding-right:6px}
+legend{*width:0}
+table{border-collapse:collapse;border-spacing:0}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+iframe{vertical-align:top}
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
 </style>
