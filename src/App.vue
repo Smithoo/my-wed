@@ -48,7 +48,7 @@ export default {
 
 <style>
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
-html,body{width:100%;height:100%}
+html,body{position:relative;width:100%;height:100%}
 html{overflow-y:scroll; font-size:10px; font:inherit;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0;border:0;}
 body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all;line-height:1}
@@ -70,6 +70,15 @@ blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
 iframe{vertical-align:top}
 #app {
   text-align: center;
+}
+#noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("/static/img/noise.png");
 }
 .contents-wrap {
     width: 100%;
