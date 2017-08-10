@@ -1,18 +1,37 @@
 <template>
     <div id="photos">
         <div class="contents-wrap">
-            
+            <ul>
+                <li class="photo-item" v-for="photo in photos">
+                    <div class="photo-wrap">
+                        <div class="photo" v-bind:style="{ backgroundImage: 'url(' + photo + ')' }"></div>
+                    </div>
+                </li>
+                <li class="clr"></li>
+            </ul>
+            <!--
+            <flickity v-if="flickityOn" ref="flickity" :options="flickityOption">
+                <div class="carousel-cell" v-for="photo in photos">
+                    <img :src="photo">
+                </div>
+            </flickity>
+        -->
         </div>
     </div>
 </template>
 <script>
+import Flickity from "vue-flickity";
+
 export default {
     name: "photos",
     components: {
+        Flickity
     },
     props: ["photoRef"],
     data() {
         return {
+            photos: [],
+            flickityOn: false,
             flickityOption: {
                 autoPlay: 5000,
                 prevNextButtons: false,
@@ -21,26 +40,14 @@ export default {
             }
         }
     },
-    mounted() {
-      setTimeout(() => {
-          const photos = this.photoRef.child("photos");
-          console.log(photos);
-          /*
-            // Points to 'images/space.jpg'
-            // Note that you can use variables to create child values
-            var fileName = 'space.jpg';
-            var spaceRef = imagesRef.child(fileName);
-
-            // File path is 'images/space.jpg'
-            var path = spaceRef.fullPath
-
-            // File name is 'space.jpg'
-            var name = spaceRef.name
-
-            // Points to 'images'
-            var imagesRef = spaceRef.parent;
-            */
-      }, 3000)
+    created() {
+        const photosRef = this.photoRef.child("photos");
+        for (let i = 1; i <= 3; i++) {
+            const photo = photosRef.child(i + ".jpg");
+            photo.getDownloadURL().then((url) => {
+                this.photos.push(url);
+            });
+        }
     },
     methods: {
         next() {
@@ -53,22 +60,33 @@ export default {
 };
 </script>
 <style scoped>
-#photos {
-    position: relative;
-}
 #photos ul {
-    position: relative;
     padding: 0 20px;
 }
-#photos li {
+#photos .photo-item {
     position: relative;
     width: 33.33%;
-    padding-top: 100%;
+    padding-top: 33.33%;
+    float: left;
+}
+#photos .photo-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    box-sizing: border-box;
 }
 #photos .photo {
-    position: absolute;
     background-position: center center;
     background-size: cover;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+#photos .clr {
+    clear: both;
 }
 .carousel-cell {
     position: relative;
