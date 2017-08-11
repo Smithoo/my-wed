@@ -14,7 +14,8 @@ if (!firebase.apps.length) {
     firebaseApp = firebase.initializeApp(config.firebaseConfig);
 }
 const db = firebaseApp.database();
-const storage = firebaseApp.storage();
+const commentsRef = db.ref("comments");
+const storageRef = firebaseApp.storage().ref();
 
 export default new VueRouter({
     routes: [
@@ -23,14 +24,17 @@ export default new VueRouter({
             name: "main",
             component: Main,
             props: {
-                storageRef: storage.ref(),
-                commentsRef: db.ref("comments")
+                storageRef: storageRef,
+                commentsRef: commentsRef
             }
         },
         {
             path: '/gallery',
             name: "gallery",
-            component: Gallery
+            component: Gallery,
+            props: {
+                storageRef: storageRef
+            }
         }
     ]
 });

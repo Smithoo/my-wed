@@ -25,10 +25,7 @@ export default {
     props: ["storageRef", "commentsRef"],
     components: {
 		Hello, Info, KakaoLink, Card, Photos, Photo360, NaverMap, Comments
-	},
-    data: () => ({
-
-    })
+	}
 }
 </script>
 <style scoped>
