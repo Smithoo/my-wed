@@ -27,7 +27,7 @@ export default {
     components: {
         Flickity
     },
-    props: ["photoRef"],
+    props: ["storageRef"],
     data() {
         return {
             photos: [],
@@ -41,7 +41,7 @@ export default {
         }
     },
     created() {
-        const photosRef = this.photoRef.child("photos");
+        const photosRef = this.storageRef.child("photos");
         for (let i = 1; i <= 3; i++) {
             const photo = photosRef.child(i + ".jpg");
             photo.getDownloadURL().then((url) => {

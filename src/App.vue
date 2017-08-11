@@ -1,51 +1,13 @@
 <template>
-  <div id="app">
-    <hello></hello>
-    <info></info>
-    <card></card>
-	<kakao-link></kakao-link>
-    <photos :photoRef="photoRef"></photos>
-    <photo360></photo360>
-    <naver-map></naver-map>
-    <comments :commentsRef="commentsRef"></comments>
-  </div>
+    <div id="app">
+        <router-view></router-view>
+    </div>
 </template>
-
 <script>
-import config from "./assets/config";
-import firebase from "firebase/app";
-import "firebase/database";
-import "firebase/storage";
-import Hello from "./components/Hello";
-import Info from "./components/Info";
-import KakaoLink from "./components/KakaoLink";
-import Card from "./components/Card";
-import Photos from "./components/Photos";
-import Photo360 from "./components/Photo360";
-import NaverMap from "./components/NaverMap";
-import Comments from "./components/Comments";
-
-let firebaseApp = null;
-if (!firebase.apps.length) {
-    firebaseApp = firebase.initializeApp(config.firebaseConfig);
-}
-const db = firebaseApp.database();
-const storage = firebaseApp.storage();
-
 export default {
-	name: "app",
-	components: {
-		Hello, Info, KakaoLink, Card, Photos, Photo360, NaverMap, Comments
-	},
-	data() {
-		return {
-            photoRef: storage.ref(),
-			commentsRef: db.ref("comments")
-		};
-	}
+	name: "app"
 }
 </script>
-
 <style>
 @import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
 html,body{position:relative;width:100%;height:100%}
