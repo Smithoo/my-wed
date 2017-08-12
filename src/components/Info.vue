@@ -1,9 +1,12 @@
 <template>
 	<div id="info">
 		<div class="contents-wrap">
-			<div class="date">2017. 9. 9</div>
-			<div class="time">1:30 PM</div>
-			<div class="place">잠실 교통회관 홀홀홀</div>
+			<div class="info-upper-box">
+				2017.9.9 SAT PM 1:30
+			</div>
+			<div class="info-under-box">
+				잠실 더컨벤션 3층 아모르홀
+			</div>
 		</div>
 	</div>
 	</template>
@@ -13,4 +16,25 @@ export default {
 }
 </script>
 <style scoped>
+#info .contents-wrap {
+	padding-top: 0;
+}
+#info .contents-wrap > div {
+	margin: auto;
+	width: 70%;
+	height: 45px;
+	line-height: 45px;
+}
+#info .info-upper-box {
+	color: #db883b;
+	border-bottom: 1px solid #aaa;
+	font-weight: 400;
+	font-family: 'Jeju Gothic', sans-serif;
+	font-size: 18px;
+}
+#info .info-under-box {
+	font-size: 16px;
+	font-family: Batang;
+	color: #888;
+}
 </style>

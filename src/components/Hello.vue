@@ -17,6 +17,9 @@ export default {
 #hello {
 	position: relative;
 }
+#hello .contents-wrap {
+	padding-top: 0;
+}
 #hello img {
 	width: 100%;
 }

@@ -54,6 +54,9 @@ export default {
 };
 </script>
 <style scoped>
+#photos {
+	background-color: #e2fff7;
+}
 #photos ul {
     padding: 0 20px;
 }

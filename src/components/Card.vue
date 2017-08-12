@@ -33,7 +33,7 @@ export default {
 	computed: {
 		cardStyle: function() {
 			return {
-				height: this.cellSize * 7 + "px"
+				height: this.cellSize * 5 + "px"
 			};
 		},
 		wrapStyle: function() {
