@@ -6,7 +6,7 @@
         <kakao-link></kakao-link>
         <photos :storageRef="storageRef"></photos>
         <photo360></photo360>
-        <naver-map></naver-map>
+		<how-to-come></how-to-come>
         <comments :commentsRef="commentsRef"></comments>
     </div>
 </template>
@@ -17,14 +17,14 @@ import KakaoLink from "./KakaoLink";
 import Card from "./Card";
 import Photos from "./Photos";
 import Photo360 from "./Photo360";
-import NaverMap from "./NaverMap";
+import HowToCome from "./HowToCome";
 import Comments from "./Comments";
 
 export default {
     name: "main",
     props: ["storageRef", "commentsRef"],
     components: {
-		Hello, Info, KakaoLink, Card, Photos, Photo360, NaverMap, Comments
+		Hello, Info, KakaoLink, Card, Photos, Photo360, HowToCome, Comments
 	}
 }
 </script>

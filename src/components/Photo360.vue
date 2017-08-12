@@ -1,8 +1,11 @@
 <template>
 	<div class="photo360">
-		<div class="contents-wrap">
-			<div class="photo360wrapper">
-				<div v-if="isAvailable" class="photo360viewer"></div>
+		<div v-if="isAvailable" class="contents-wrap">
+			<div class="photo360-wrapper">
+				<div class="photo360-viewer"></div>
+				<div class="photo360-guide">
+					<span>이미지를 돌려보세요</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -17,7 +20,7 @@ export default {
 	},
 	mounted() {
 		this.$nextTick(() => {
-			const el = this.$el.querySelector(".photo360viewer");
+			const el = this.$el.querySelector(".photo360-viewer");
 			if (this.isAvailable) {
 				const photo360Viewer = new Photo360Viewer(
 					el,
@@ -43,7 +46,7 @@ export default {
 	width: 100%;
 	max-height: 500px;
 }
-.photo360wrapper {
+.photo360-wrapper {
 	position: relative;
 	width: 100%;
 	max-width: 500px;
@@ -51,7 +54,7 @@ export default {
 	padding-top: 100%;
 	margin: auto;
 }
-.photo360viewer {
+.photo360-viewer {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -62,5 +65,16 @@ export default {
 	touch-action: pan-y !important;
 	user-select: none;
 	-webkit-user-drag: none;
+}
+.photo360-guide {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 20px;
+	color: #fff;
+	background-color: #999;
+	font-size: 10px;
+	line-height: 20px;
+	opacity: 0.8;
 }
 </style>

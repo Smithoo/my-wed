@@ -1,38 +1,30 @@
 <template>
 	<div id="naver-map">
-		<div class="contents-wrap">
-			<h2>오시는 길</h2>
-	        <div id="naver-map-wrapper">
-	            <div id="naver-map-content">
-	                <div id="map"></div>
-	            </div>
-	        </div>
-		</div>
+        <div id="naver-map-wrapper">
+            <div id="naver-map-content">
+                <div id="map"></div>
+            </div>
+        </div>
 	</div>
 </template>
 <script>
+import SectionTitle from "./SectionTitle";
+
 export default {
     name: "naver-map",
+	components: {SectionTitle},
+	props: ["mapOption"],
     mounted() {
-        const map = new naver.maps.Map("map", {
-            center: new naver.maps.LatLng(37.515461, 127.1056546),
-            zoom: 11,
-            minZoom: 9,
-            maxZoom: 12,
-            scaleControl: false,
-            logoControl: true,
-            mapDataControl: false,
-            zoomControl: false,
-            mapTypeControl: false,
-            zoomControlOptions: {
-                position: naver.maps.Position.TOP_RIGHT
-            }
-        });
+        const map = new naver.maps.Map("map", this.mapOption);
 
         const marker = new naver.maps.Marker({
-            position: new naver.maps.LatLng(37.516061, 127.1057546),
+            position: new naver.maps.LatLng(37.515661, 127.1052546),
             map: map,
-            clickable: true
+            clickable: true,
+			icon: {
+				url: "/static/img/map_info.png",
+				anchor: new naver.maps.Point(195, 103)
+			}
         });
 
         naver.maps.Event.addListener(marker, 'click', function(e) {
@@ -45,6 +37,7 @@ export default {
 #naver-map {
 	position: relative;
 	width: 100%;
+	max-height: 500px;
 }
 #naver-map-wrapper {
 	position: relative;
@@ -60,8 +53,10 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	padding: 20px;
 	max-width: 500px;
     max-height: 500px;
+	box-sizing: border-box;
 }
 #map {
     width: 100%;

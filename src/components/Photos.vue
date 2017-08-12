@@ -1,6 +1,7 @@
 <template>
     <div id="photos">
         <div class="contents-wrap">
+			<section-title :label="label" :icon="icon"></section-title>
             <ul>
                 <li class="photo-item" v-for="photo in photos">
                     <div class="photo-wrap">
@@ -9,27 +10,20 @@
                 </li>
                 <li class="clr"></li>
             </ul>
-            <!--
-            <flickity v-if="flickityOn" ref="flickity" :options="flickityOption">
-                <div class="carousel-cell" v-for="photo in photos">
-                    <img :src="photo">
-                </div>
-            </flickity>
-        -->
         </div>
     </div>
 </template>
 <script>
-import Flickity from "vue-flickity";
+import SectionTitle from "./SectionTitle";
 
 export default {
     name: "photos",
-    components: {
-        Flickity
-    },
+    components: {SectionTitle},
     props: ["storageRef"],
     data() {
         return {
+			label: "사진첩",
+			icon: "photo_library",
             photos: [],
             flickityOn: false,
             flickityOption: {
@@ -41,9 +35,9 @@ export default {
         }
     },
     created() {
-        const photosRef = this.storageRef.child("photos");
-        for (let i = 1; i <= 3; i++) {
-            const photo = photosRef.child(i + ".jpg");
+        const photosRef = this.storageRef.child("thumbnails");
+        for (let i = 1; i <= 12; i++) {
+            const photo = photosRef.child("thumb_" + i + ".jpg");
             photo.getDownloadURL().then((url) => {
                 this.photos.push(url);
             });

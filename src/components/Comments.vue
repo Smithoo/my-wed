@@ -66,7 +66,7 @@ export default {
 			if (!this.name || !this.message) {
 				return;
 			}
-			
+
 			var currentdate = new Date();
 			var datetime = currentdate.getFullYear() + "-"
 				+ (currentdate.getMonth() + 1) + "-"
@@ -91,10 +91,12 @@ export default {
 }
 </script>
 <style>
+#comments {
+	 background-color: #ffe5e5;
+}
 .comment-form {
     max-width:400px;
     margin:0px auto;
-    background:#fff;
     border-radius:2px;
     padding:20px;
     font-family: Georgia, "Times New Roman", Times, serif;
@@ -108,6 +110,7 @@ export default {
     display: block;
     padding: 9px;
     border:1px solid #DDDDDD;
+	background-color: #ffffff;
     margin-bottom: 25px;
     border-radius: 3px;
 }
@@ -115,6 +118,7 @@ export default {
     border:none;
     margin-bottom: 0px;
     text-align: center;
+	background-color: transparent;
 }
 .comment-form li > label{
     display: block;
@@ -127,6 +131,8 @@ export default {
     font-size: 14px;
     overflow: hidden;
     font-family: Arial, Helvetica, sans-serif;
+	border-top: 1px solid #DDDDDD;
+	border-radius: 5px;
 }
 .comment-form input[type="text"],
 .comment-form textarea,
@@ -163,7 +169,7 @@ export default {
 .comment-form input[type="button"]{
     background: #eacd1f;
     border: none;
-    padding: 10px 20px 10px 20px;
+    padding: 6px 25px;
     border-bottom: 3px solid #FCE781;
     border-radius: 3px;
     color: #fff;

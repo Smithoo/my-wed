@@ -33,15 +33,6 @@ iframe{vertical-align:top}
 #app {
   text-align: center;
 }
-#noise {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background-image: url("/static/img/noise.png");
-}
 .contents-wrap {
     width: 100%;
     max-width: 600px;

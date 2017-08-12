@@ -2,6 +2,14 @@
   <div id="gallery">
       <pinch-slider :slides="imgs" :enable-pinch="true" :current-index='currentIndex' @on-slide-change="changePageNo" @on-img-click="showFull" :lazyLoad="true">
       </pinch-slider>
+
+	  <!--
+	  <flickity v-if="flickityOn" ref="flickity" :options="flickityOption">
+		  <div class="carousel-cell" v-for="photo in photos">
+			  <img :src="photo">
+		  </div>
+	  </flickity>
+  -->
   </div>
 </template>
 <script>
