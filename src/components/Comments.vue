@@ -1,26 +1,46 @@
 <template>
 	<div id="comments">
 		<div class="contents-wrap">
-			<form v-on:submit.prevent="pushComment">
-			  <h2>방명록</h2>
-			  <p><input type="text" v-model="newComment.name" placeholder="이름을 입력하세요" /></p>
-			  <p><textarea type="text" v-model="newComment.message" placeholder="메시지를 입력하세요" /></p>
-			  <input type="submit" value="추가" />
+			<section-title :label="label" :icon="icon"></section-title>
+			<form class="comment-form" v-on:submit.prevent="pushComment">
+				<ul>
+					<li>
+						<label for="name">Name</label>
+						<input type="text" name="name" v-model="name" maxlength="10" />
+						<span>이름을 입력해주세요</span>
+					</li>
+					<li>
+						<label for="msg">Message</label>
+						<textarea type="text" name="msg" v-model="message" maxlength="100" ref="msg"/>
+						<span>메시지를 입력해주세요</span>
+					</li>
+					<li>
+						<input type="submit" value="추가" />
+					</li>
+				</ul>
 			</form>
-			<ul class="commentList">
+			<ul class="comment-list">
 				<li v-for="comment in comments">
-					이름: {{comment.name}}
-					<br>
-					메시지: {{comment.message}}
+					<div class="comment-header">
+						<p class="comment-name">{{comment.name}}</p>
+						<p class="comment-date">{{comment.date}}</p>
+					</div>
+					<div class="comment-body">
+						{{comment.message}}
+					</div>
+					<div class="clr"></div>
 				</li>
 			</ul>
 		</div>
 	</div>
 </template>
 <script>
+import SectionTitle from "./SectionTitle";
+
 export default {
     name: "comments",
 	props: ["commentsRef"],
+	components: {SectionTitle},
 	firebase: function() {
         return {
             comments: this.commentsRef
@@ -28,48 +48,161 @@ export default {
     },
     data () {
         return {
-            newComment: {
-                name: "",
-                message: "",
-                date: ""
-            }
-        }
+			icon: "question_answer",
+			label: "방명록",
+			name: "",
+			message: "",
+			date: ""
+        };
     },
-    computed: {
-    },
+	watch: {
+		message() {
+			const textarea = this.$refs.msg;
+			this.adjustTextareaHeight(textarea);
+		}
+	},
     methods: {
         pushComment: function() {
+			if (!this.name || !this.message) {
+				return;
+			}
+			
 			var currentdate = new Date();
-			var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
-                + currentdate.getFullYear() + " @ "
+			var datetime = currentdate.getFullYear() + "-"
+				+ (currentdate.getMonth() + 1) + "-"
+				+ currentdate.getDate() + " "
                 + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-			this.newComment.date = datetime;
-            this.commentsRef.push(this.newComment);
-            this.newComment.name = "";
-            this.newComment.message = "";
-            this.newComment.date = "";
+                + currentdate.getMinutes();
+			this.date = datetime;
+            this.commentsRef.push({
+				name: this.name,
+				message: this.message,
+				date: this.date
+			});
+            this.name = "";
+            this.message = "";
+            this.date = "";
         },
-        removeBook: function(book) {
-            // this.books.child(book['.key']).remove();
-        }
+		adjustTextareaHeight(h) {
+			h.style.height = "20px";
+			h.style.height = (h.scrollHeight)+"px";
+		}
     }
 }
 </script>
 <style>
-.commentList {
+.comment-form {
+    max-width:400px;
+    margin:0px auto;
+    background:#fff;
+    border-radius:2px;
+    padding:20px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+.comment-form ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+.comment-form li {
+    display: block;
+    padding: 9px;
+    border:1px solid #DDDDDD;
+    margin-bottom: 25px;
+    border-radius: 3px;
+}
+.comment-form li:last-child{
+    border:none;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.comment-form li > label{
+    display: block;
+    float: left;
+    margin-top: -19px;
+    background: #FFFFFF;
+    height: 14px;
+    padding: 2px 5px 2px 5px;
+    color: #B9B9B9;
+    font-size: 14px;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.comment-form input[type="text"],
+.comment-form textarea,
+.comment-form select
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    font-size: 16px;
+    padding: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+	color: #888;
+}
+.comment-form li > span {
+    background: #F1F1F1;
+    display: block;
+    padding: 3px;
+    margin: 0 -9px -9px -9px;
+    text-align: center;
+    color: #C0C0C0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+.comment-form textarea{
+    resize:none;
+}
+.comment-form input[type="submit"],
+.comment-form input[type="button"]{
+    background: #eacd1f;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-bottom: 3px solid #FCE781;
+    border-radius: 3px;
+    color: #fff;
+	font-weight: 600;
+}
+.comment-form input[type="submit"]:hover,
+.comment-form input[type="button"]:hover{
+    background: #F4D862;
+    color:#fff;
+}
+.comment-list {
 	margin: 0;
 	border: 0;
 	padding: 0;
 	text-align: left;
-	margin-top: 30px;
-	list-style: none;
 }
-.commentList li {
-	padding: 10px;
-	border: #111 solid 1px;
+.comment-list li {
+	padding: 10px 20px;
 	line-height: 20px;
+}
+.comment-list .comment-header {
+	float: left;
+	width: 30%;
+}
+.comment-list .comment-name {
+	font-weight: 800;
+}
+.comment-list .comment-date {
+	font-size: 6px;
+	color: #bbb;
+}
+.comment-list .comment-body {
+	float: left;
+	width: 70%;
+	border-left: 3px solid #999;
+	padding-left: 12px;
+	box-sizing: border-box;
+}
+.comment-list .clr {
+	clear: both;
 }
 </style>

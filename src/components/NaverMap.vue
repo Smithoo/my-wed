@@ -45,8 +45,6 @@ export default {
 #naver-map {
 	position: relative;
 	width: 100%;
-	margin-top: 50px;
-	max-height: 500px;
 }
 #naver-map-wrapper {
 	position: relative;
