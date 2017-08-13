@@ -1,58 +1,122 @@
 <template>
   <div id="gallery">
-      <pinch-slider :slides="imgs" :enable-pinch="true" :current-index='currentIndex' @on-slide-change="changePageNo" @on-img-click="showFull" :lazyLoad="true">
-      </pinch-slider>
-
-	  <!--
-	  <flickity v-if="flickityOn" ref="flickity" :options="flickityOption">
-		  <div class="carousel-cell" v-for="photo in photos">
-			  <img :src="photo">
-		  </div>
-	  </flickity>
-  -->
+	  <div class="content-wrap">
+		  <flickity ref="flickity" :options="flickityOption">
+    		  <div class="carousel-cell" v-for="(photo, index) in photos" :key="index">
+    			  <img :src="photo">
+    		  </div>
+    	  </flickity>
+	  </div>
+	  <div class="close" @click="onClickClose">
+		  <md-icon class="md-size-2x">close</md-icon>
+	  </div>
   </div>
 </template>
 <script>
-import Vue from "vue";
-import { PinchSlider, AlloyFinger, AlloyFingerVue } from 'pinch-slider';
-
-Vue.use( AlloyFingerVue, { AlloyFinger: AlloyFinger }); // use AlloyFinger's plugin
-Vue.component('pinch-slider', PinchSlider);
+import Flickity from 'vue-flickity';
 
 export default {
     name: "gallery",
-    components: {
-        PinchSlider
+    components: {Flickity},
+    data() {
+		return {
+			carouselStyle: {
+				position: "absolute",
+				margin: "auto",
+				top: 0,
+				left: 0,
+				bottom: 0,
+				right: 0,
+				height: "500px"
+			},
+			flickityOption: {
+				initialIndex: this.$route.params.index,
+				autoPlay: 5000,
+				prevNextButtons: false,
+				pageDots: false,
+				wrapAround: true
+			},
+			photos: this.$route.params.photos
+		};
     },
-    props: ["storageRef"],
-    data: () => ({
-        imgs: [],
-        currentIndex: 0,
-        isFull:false
-    }),
-    created() {
-        const photosRef = this.storageRef.child("photos");
-        for (let i = 1; i <= 3; i++) {
-            const photo = photosRef.child(i + ".jpg");
-            photo.getDownloadURL().then((url) => {
-                this.imgs.push({src: url});
-            });
-        }
-    },
-    methods: {
-        showFull() {
-            this.isFull = true;
-        },
-        changePageNo(data) {
-            this.currentIndex = data.index;
-        }
-    }
+	mounted() {
+		this.$refs.flickity.select(this.initialIndex, true, true);
+	},
+	methods: {
+		onClickClose() {
+			this.$router.push({path: "/"});
+		}
+	}
 }
 </script>
-<style>
-.slider-container {
+<style scoped>
+#gallery .close {
+	position: fixed;
+	top: 20px;
+	right: 15px;
+	color: #fff;
+	z-index: 100;
+}
+#gallery {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #222;
+}
+#gallery .content-wrap {
+	position: absolute;
+	height: 500px;
+	top: 0; left: 0; bottom: 0; right: 0;
+	margin: auto;
+}
+.carousel-cell {
+    position: relative;
+    overflow: hidden;
     width: 100%;
     height: 500px;
-    overflow: hidden;
+}
+.carousel-cell img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.flickity-enabled {
+  position: relative;
+}
+.flickity-enabled:focus { outline: none; }
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+          tap-highlight-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 </style>

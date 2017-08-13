@@ -3,9 +3,9 @@
         <div class="contents-wrap">
 			<section-title :label="label" :icon="icon"></section-title>
             <ul>
-                <li class="photo-item" v-for="(photo, index) in photos">
+                <li class="photo-item" v-for="(thumbnail, index) in thumbs">
                     <div class="photo-wrap">
-                        <div class="photo" :style="{ backgroundImage: 'url(' + photo + ')' }" @click="onClickPhoto(index)"></div>
+                        <div class="photo" :style="{ backgroundImage: 'url(' + thumbnail + ')' }" @click="onClickPhoto(index)"></div>
                     </div>
                 </li>
                 <li class="clr"></li>
@@ -24,28 +24,28 @@ export default {
         return {
 			label: "사진첩",
 			icon: "photo_library",
-            photos: [],
-            flickityOn: false,
-            flickityOption: {
-                autoPlay: 5000,
-                prevNextButtons: false,
-                pageDots: true,
-                wrapAround: true
-            }
+			thumbs: [],
+            photos: []
         }
     },
     created() {
-        const photosRef = this.storageRef.child("thumbnails");
+		const thumbsRef = this.storageRef.child("thumbnails");
+		const photosRef = this.storageRef.child("photos");
         for (let i = 1; i <= 12; i++) {
-            const photo = photosRef.child("thumb_" + i + ".jpg");
-            photo.getDownloadURL().then((url) => {
+			const thumbnail = thumbsRef.child("thumb_" + i + ".jpg");
+			const photo = photosRef.child("photo_" + i + ".jpg");
+
+            thumbnail.getDownloadURL().then((url) => {
+                this.thumbs.push(url);
+            });
+			photo.getDownloadURL().then((url) => {
                 this.photos.push(url);
             });
         }
     },
     methods: {
         onClickPhoto(index) {
-			this.$router.push({ name: "gallery", params: { index: index }});
+			this.$router.push({ name: "gallery", params: { index: index, photos: this.photos }});
 		}
     }
 };
@@ -81,78 +81,5 @@ export default {
 }
 #photos .clr {
     clear: both;
-}
-.carousel-cell {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 300px;
-}
-.carousel-cell img {
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
-.flickity-enabled {
-  position: relative;
-}
-.flickity-enabled:focus { outline: none; }
-.flickity-viewport {
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-}
-.flickity-slider {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.flickity-enabled.is-draggable {
-  -webkit-tap-highlight-color: transparent;
-          tap-highlight-color: transparent;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.flickity-enabled.is-draggable .flickity-viewport {
-  cursor: move;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
-}
-
-.flickity-page-dots {
-  position: absolute;
-  width: 100%;
-  bottom: -25px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-align: center;
-  line-height: 1;
-}
-.flickity-rtl .flickity-page-dots { direction: rtl; }
-.flickity-page-dots .dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  margin: 0 8px;
-  background: #333;
-  border-radius: 50%;
-  opacity: 0.25;
-  cursor: pointer;
-}
-.flickity-page-dots .dot.is-selected {
-  opacity: 1;
 }
 </style>

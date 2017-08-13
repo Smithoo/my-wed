@@ -32,10 +32,7 @@ export default new VueRouter({
 		{
 			path: "/gallery",
 			name: "gallery",
-			component: Gallery,
-			props: {
-				storageRef: storageRef
-			}
+			component: Gallery
 		},
 		{
 			path: "/map",
