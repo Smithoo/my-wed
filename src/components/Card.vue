@@ -1,6 +1,6 @@
 <template>
-	<div id="card" :style="cardStyle">
-		<div class="contents-wrap">
+	<div id="card">
+		<div class="contents-wrap" :style="cardStyle">
 			<div class="card_wrap" :style="wrapStyle">
 				<div class="card_box floating">
 					<node v-for="node in nodes" :key="node.id" :node="node" :cellSize="cellSize"></node>
@@ -28,12 +28,12 @@ export default {
 		setInterval(() => {
 			this.currentPage = (this.currentPage + 1) % cardLength;
 			this.nodes = cardData[this.currentPage];
-		}, 5000);
+		}, 3000);
 	},
 	computed: {
 		cardStyle: function() {
 			return {
-				height: this.cellSize * 5 + "px"
+				height: this.cellSize * 6 + "px"
 			};
 		},
 		wrapStyle: function() {
