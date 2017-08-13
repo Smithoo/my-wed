@@ -6,13 +6,8 @@
   </div>
 </template>
 <script>
-import config from "./../assets/config";
-
 export default {
 	name: "kakao-link",
-	mounted() {
-		Kakao.init(config.kakaoAppKey);
-	},
 	methods: {
 		sendLink() {
 			Kakao.Link.sendScrap({

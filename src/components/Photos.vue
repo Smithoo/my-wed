@@ -3,9 +3,9 @@
         <div class="contents-wrap">
 			<section-title :label="label" :icon="icon"></section-title>
             <ul>
-                <li class="photo-item" v-for="photo in photos">
+                <li class="photo-item" v-for="(photo, index) in photos">
                     <div class="photo-wrap">
-                        <div class="photo" v-bind:style="{ backgroundImage: 'url(' + photo + ')' }"></div>
+                        <div class="photo" :style="{ backgroundImage: 'url(' + photo + ')' }" @click="onClickPhoto(index)"></div>
                     </div>
                 </li>
                 <li class="clr"></li>
@@ -44,12 +44,9 @@ export default {
         }
     },
     methods: {
-        next() {
-            this.$refs.flickity.next();
-        },
-        previous() {
-            this.$refs.flickity.previous();
-        }
+        onClickPhoto(index) {
+			this.$router.push({ name: "gallery", params: { index: index }});
+		}
     }
 };
 </script>

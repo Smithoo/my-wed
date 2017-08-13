@@ -4,7 +4,7 @@
 			<section-title :label="label" :icon="icon"></section-title>
 			<naver-map :mapOption="mapOption"></naver-map>
 			<div class="go-detail">
-				<button type="button">자세히 보기</button>
+				<button type="button" @click="onClickButton">자세히 보기</button>
 			</div>
 		</div>
 	</div>
@@ -41,6 +41,11 @@ export default {
 	                position: naver.maps.Position.TOP_RIGHT
 	            }
 	        }
+		}
+	},
+	methods: {
+		onClickButton() {
+			this.$router.push("map");
 		}
 	}
 }

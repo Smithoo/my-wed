@@ -4,8 +4,13 @@
     </div>
 </template>
 <script>
+import config from "./assets/config";
+
 export default {
-	name: "app"
+	name: "app",
+	mounted() {
+		Kakao.init(config.kakaoAppKey);
+	}
 }
 </script>
 <style>

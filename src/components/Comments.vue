@@ -174,6 +174,8 @@ export default {
     border-radius: 3px;
     color: #fff;
 	font-weight: 600;
+	width: 80px;
+	height: 35px;
 }
 .comment-form input[type="submit"]:hover,
 .comment-form input[type="button"]:hover{
@@ -189,6 +191,7 @@ export default {
 .comment-list li {
 	padding: 10px 20px;
 	line-height: 20px;
+	min-height: 25px;
 }
 .comment-list .comment-header {
 	float: left;
