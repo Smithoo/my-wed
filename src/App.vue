@@ -42,8 +42,8 @@ iframe{vertical-align:top}
     width: 100%;
     max-width: 500px;
     margin: auto;
-	padding-top: 15px;
-    padding-bottom: 20px;
+	padding-top: 24px;
+    padding-bottom: 24px;
 	box-sizing: border-box;
 }
 </style>

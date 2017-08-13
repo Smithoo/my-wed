@@ -2,6 +2,7 @@
     <div id="main">
         <hello></hello>
         <info></info>
+		<names></names>
         <card></card>
         <kakao-link></kakao-link>
         <photos :storageRef="storageRef"></photos>
@@ -13,6 +14,7 @@
 <script>
 import Hello from "./Hello";
 import Info from "./Info";
+import Names from "./Names";
 import KakaoLink from "./KakaoLink";
 import Card from "./Card";
 import Photos from "./Photos";
@@ -24,7 +26,7 @@ export default {
     name: "main",
     props: ["storageRef", "commentsRef"],
     components: {
-		Hello, Info, KakaoLink, Card, Photos, Photo360, HowToCome, Comments
+		Hello, Info, Names, KakaoLink, Card, Photos, Photo360, HowToCome, Comments
 	}
 }
 </script>
