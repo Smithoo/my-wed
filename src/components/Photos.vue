@@ -52,7 +52,7 @@ export default {
 </script>
 <style scoped>
 #photos {
-	background-color: #e2fff7;
+	background-color: #ffecec;
 }
 #photos ul {
     padding: 0 20px;

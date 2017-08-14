@@ -29,14 +29,14 @@ export default {
 </script>
 <style scoped>
 #names {
-	background-color: #f3ffed;
 	font-family: 'Jeju Gothic', sans-serif;
 }
 #names .contents-wrap {
-	padding: 20px 0;
+	padding-top: 0;
+	padding-bottom: 40px;
 }
 #names .contents-wrap > div {
-	padding: 10px 0;
+	padding: 12px 0;
 }
 #names .parents {
 	float: left;

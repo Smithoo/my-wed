@@ -3,7 +3,7 @@
 		<div class="contents-wrap" :style="cardStyle">
 			<div class="card_wrap" :style="wrapStyle">
 				<div class="card_box floating">
-					<node v-for="node in nodes" :key="node.id" :node="node" :cellSize="cellSize"></node>
+					<node v-for="node in nodes" :key="node.value" :node="node" :cellSize="cellSize"></node>
 				</div>
 			</div>
 		</div>

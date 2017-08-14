@@ -21,6 +21,7 @@ export default {
 <style scoped>
 #kakao-link .contents-wrap {
 	padding: 30px 0;
+    padding-top: 0;
 }
 #kakao-link img {
 	width: 280px;

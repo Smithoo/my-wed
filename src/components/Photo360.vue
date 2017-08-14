@@ -45,7 +45,7 @@ export default {
 	position: relative;
 	width: 100%;
 	max-height: 600px;
-	background-color: #e2fff7;
+	background-color: #ffecec;
 }
 .photo360 .contents-wrap {
 	padding-bottom: 0;

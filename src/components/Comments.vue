@@ -15,7 +15,7 @@
 						<span>메시지를 입력해주세요</span>
 					</li>
 					<li>
-						<input type="submit" value="추가" />
+						<input type="submit" value="등   록" />
 					</li>
 				</ul>
 			</form>
@@ -92,7 +92,7 @@ export default {
 </script>
 <style>
 #comments {
-	 background-color: #ffe5e5;
+	 background-color: #e2fff7;
 }
 .comment-form {
     max-width:400px;
@@ -167,20 +167,21 @@ export default {
 }
 .comment-form input[type="submit"],
 .comment-form input[type="button"]{
-    background: #eacd1f;
+    background-color: #CCCCCC;
     border: none;
-    padding: 6px 25px;
-    border-bottom: 3px solid #FCE781;
+    border-bottom: 3px solid #999999;
     border-radius: 3px;
     color: #fff;
 	font-weight: 600;
 	width: 80px;
-	height: 35px;
+	height: 38px;
+	font-size: 14px;
+	text-align: center;
 }
 .comment-form input[type="submit"]:hover,
 .comment-form input[type="button"]:hover{
-    background: #F4D862;
-    color:#fff;
+    background-color: #444444;
+    color: #fff;
 }
 .comment-list {
 	margin: 0;
