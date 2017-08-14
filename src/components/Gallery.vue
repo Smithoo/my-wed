@@ -3,7 +3,7 @@
 	  <div class="content-wrap">
 		  <flickity ref="flickity" :options="flickityOption">
     		  <div class="carousel-cell" v-for="(photo, index) in photos" :key="index">
-    			  <img :src="photo">
+    			  <img :data-flickity-lazyload="photo">
     		  </div>
     	  </flickity>
 	  </div>
@@ -34,7 +34,8 @@ export default {
 				autoPlay: 5000,
 				prevNextButtons: false,
 				pageDots: false,
-				wrapAround: true
+				wrapAround: true,
+                lazyLoad: true
 			},
 			photos: this.$route.params.photos
 		};
