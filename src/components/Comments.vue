@@ -167,9 +167,9 @@ export default {
 }
 .comment-form input[type="submit"],
 .comment-form input[type="button"]{
-    background-color: #CCCCCC;
+    background-color: #AAAAAA;
     border: none;
-    border-bottom: 3px solid #999999;
+    border-bottom: 3px solid #888888;
     border-radius: 3px;
     color: #fff;
 	font-weight: 600;
