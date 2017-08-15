@@ -57,6 +57,7 @@ export default {
 	right: 15px;
 	color: #fff;
 	z-index: 100;
+	cursor: pointer;
 }
 #gallery {
 	position: fixed;

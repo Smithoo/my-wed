@@ -1,13 +1,18 @@
 <template>
 	<div class="section-title">
-		<md-icon>{{icon}}</md-icon>
+		<md-icon :md-src="iconSVG"></md-icon>
 		<span class="section-label">{{label}}</span>
 	</div>
 </template>
 <script>
 export default {
 	name: "section-title",
-	props: ["label", "icon"]
+	props: ["label", "icon"],
+	computed: {
+		iconSVG() {
+			return "/static/img/" + this.icon + ".svg";
+		}
+	}
 }
 </script>
 <style scoped>

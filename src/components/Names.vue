@@ -33,7 +33,7 @@ export default {
 }
 #names .contents-wrap {
 	padding-top: 0;
-	padding-bottom: 40px;
+	padding-bottom: 0;
 }
 #names .contents-wrap > div {
 	padding: 12px 0;
