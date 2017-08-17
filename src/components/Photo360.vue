@@ -19,7 +19,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$nextTick(() => {
+		setTimeout(() => {
 			const el = this.$el.querySelector(".photo360-viewer");
 			if (this.isAvailable) {
 				const photo360Viewer = new Photo360Viewer(
@@ -36,7 +36,7 @@ export default {
 				);
 				photo360Viewer.resume();
 			}
-		});
+		}, 3000);
 	}
 };
 </script>

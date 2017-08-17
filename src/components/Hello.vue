@@ -1,7 +1,7 @@
 <template>
 	<div id="hello">
 		<div class="contents-wrap">
-			<img src="/static/img/hello.jpg" alt="Wedding Invitation"/>
+			<img src="https://firebasestorage.googleapis.com/v0/b/smithoo-cb60c.appspot.com/o/hello.jpg?alt=media&token=6b526936-fb0f-467a-9f96-2892f638cd76" alt="Wedding Invitation"/>
 			<h1>Wedding Invitation</h1>
 		</div>
 	</div>
@@ -19,6 +19,7 @@ export default {
 }
 #hello .contents-wrap {
 	padding-top: 0;
+	min-height: 200px;
 }
 #hello img {
 	width: 100%;

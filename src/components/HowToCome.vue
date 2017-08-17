@@ -2,7 +2,9 @@
 	<div id="how-to-come">
 		<div class="contents-wrap">
 			<section-title :label="label" :icon="icon"></section-title>
-			<naver-map :mapOption="mapOption"></naver-map>
+			<div class="map-wrapper">
+				<img src="/static/img/map.jpg" alt="오시는길">
+			</div>
 			<div class="go-detail">
 				<button type="button" @click="onClickButton">자세히 보기</button>
 			</div>
@@ -51,8 +53,15 @@ export default {
 }
 </script>
 <style scoped>
+#how-to-come .map-wrapper {
+	padding: 10px 20px;
+}
+#how-to-come img {
+	width: 100%;
+}
 #how-to-come .go-detail {
 	padding: 0 20px;
+	padding-top: 10px;
 }
 #how-to-come button{
 	width: 100%;
